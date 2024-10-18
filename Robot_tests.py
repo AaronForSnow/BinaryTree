@@ -7,11 +7,19 @@ test_tree = tree(
         [123, 12,  23, 45, 56, 67, 78], #ISBN
         [  1,  7,   3,  4,  7,  2,  9]  #Frequency 33 = total  split 23 and 11 
 )
-
-def test_robot_can_give_cost_single_book():
+#####The movement pattern #######
     #move to root (1)  cost + 1
     #scan              cost + .5
     #retrive book      cost + .25
     #change direction  cost + 10
     #go back           cost + 1
-    assert False
+
+def test_robot_can_give_cost_single_book():
+    oneBookTree = tree (
+        [10],   #ISBN
+        [3]     #Frequency = 3
+    )
+    myRobot = Robot()
+    myRobot.tree = oneBookTree
+    answer = myRobot.CostOfISBN(10)
+    assert answer == 12.75
