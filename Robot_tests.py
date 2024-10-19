@@ -14,30 +14,30 @@ test_tree = tree(
     #change direction  cost + 10
     #go back           cost + 1
 
-# def test_robot_can_give_cost_single_book():
-#     oneBookTree = tree (
-#         [10],   #ISBN
-#         [3]     #Frequency = 3
-#     )
-#     myRobot = Robot()
-#     myRobot.tree = oneBookTree
-#     answer = myRobot.costOfISBN(10)
-#     assert answer == 12.75
+def test_robot_can_give_cost_single_book():
+    oneBookTree = tree (
+        [10],   #ISBN
+        [3]     #Frequency = 3
+    )
+    myRobot = Robot()
+    myRobot.tree = oneBookTree
+    answer = myRobot.costOfISBN(10)
+    assert answer == 12.75
 
-# def test_robot_can_give_cost_book_left_of_root():
-#     myRobot = Robot()
-#     myRobot.tree = test_tree
-#     cost = myRobot.costOfISBN(12)
-#     assert cost == 15.25
+def test_robot_can_give_cost_book_left_of_root():
+    myRobot = Robot()
+    myRobot.tree = test_tree
+    cost = myRobot.costOfISBN(12)
+    assert cost == 15.25
 
-# def test_robot_can_give_cost_book_right_of_root():
-#     myRobot = Robot()
-#     myRobot.tree = test_tree
-#     cost = myRobot.costOfISBN(78)
-#     assert cost == 17.25
+def test_robot_can_give_cost_book_right_of_root():
+    myRobot = Robot()
+    myRobot.tree = test_tree
+    cost = myRobot.costOfISBN(78)
+    assert cost == 17.25
 
-def test_tree_structure_works_as_expected():
-    print ("length is ", len(test_tree.bins))
-    for i in range(len(test_tree.bins)):
-        print(test_tree.bins[i].Isbn)
-        assert False
+# def test_tree_structure_works_as_expected():
+#     print ("length is ", len(test_tree.bins))
+#     for i in range(len(test_tree.bins)):
+#         print(test_tree.bins[i].Isbn)
+#         assert False

@@ -37,4 +37,6 @@ class tree:
             if count >= target:
                 return sub_bins[i], sub_bins[:i], sub_bins[i+1:]
 
+    def set_bins_in_hash_order(self):
+        return 
 

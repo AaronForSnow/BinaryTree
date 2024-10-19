@@ -2,34 +2,38 @@
 # and calulate the cost of collecting the books
 from Tree import tree;
 class Robot:
+    
     def __init__(self):
         self.tree = None
+        self.move_once_cost = 1
+        self.scan_cost = .5
+        self.retrieve_cost = .25
+        self.change_direction_cost = 10
+        self.return_to_start_cost = 1
         return
     def costToMoveAndScan(self, currentPosition, targetPosition):
-        moveCost = targetPosition - currentPosition
+        moveCost = (targetPosition - currentPosition) * self.move_once_cost
         scanCost = .5
         return moveCost + scanCost
     def costOfISBN(self, isbn):
         found = False
-        cost = 1.0 #because bin 0 is 1 away from the robot's starting place
+        cost = self.move_once_cost #because bin 0 is 1 away from the robot's starting place
         i = 0
         while not found:
             if (self.tree.bins[i].Isbn) == isbn:
-                #scan book
-                cost += 0.5
-                #retrieve book
-                cost += 0.25
+                cost += self.scan_cost
+                cost += self.retrieve_cost
                 found = True
                 print ("found book at i = ", i)
             #isbn was too big, go left
             elif (self.tree.bins[i].Isbn > isbn):
-                cost += self.costToMoveAndScan(i, 2*i + 1)
-                i = 2 * i + 1
+                cost += self.costToMoveAndScan(i, 2*i )
+                i = 2 * i
                 print ("i now equals ", i)
             #isbn was too small, go right
             elif (self.tree.bins[i].Isbn < isbn):
-                cost += self.costToMoveAndScan(i, 2*i + 2)
-                i = 2 * i + 2
+                cost += self.costToMoveAndScan(i, 2*i + 1)
+                i = 2 * i + 1
                 print ("i now equals ", i)
             else:
                 Found = True
