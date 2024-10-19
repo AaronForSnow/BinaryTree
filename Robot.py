@@ -20,9 +20,15 @@ class Robot:
                 #retrieve book
                 cost += 0.25
                 found = True
-            elif (self.tree.bins[i].Isbn < isbn):
+            #isbn was too big, go left
+            elif (self.tree.bins[i].Isbn > isbn):
                 cost += self.costToMoveAndScan(i, 2**i)
                 i = 2 **i
+            #isbn was too small, go right
+            else:
+                cost += self.costToMoveAndScan(i, 2**i)
+                i = 2 **i
+            
         #now, add to it the cost to turn around and come back, and traverse to that.
         cost += 10 #change directions
         cost += i #come back to bin 0

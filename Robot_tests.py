@@ -23,3 +23,15 @@ def test_robot_can_give_cost_single_book():
     myRobot.tree = oneBookTree
     answer = myRobot.costOfISBN(10)
     assert answer == 12.75
+
+def test_robot_can_give_cost_book_left_of_root():
+    myRobot = Robot()
+    myRobot.tree = test_tree
+    cost = myRobot.costOfISBN(12)
+    assert cost == 15.25
+
+def test_robot_can_give_cost_book_right_of_root():
+    myRobot = Robot()
+    myRobot.tree = test_tree
+    cost = myRobot.costOfISBN(78)
+    assert cost == 17.25
