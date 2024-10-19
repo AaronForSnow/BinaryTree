@@ -20,14 +20,20 @@ class Robot:
                 #retrieve book
                 cost += 0.25
                 found = True
+                print ("found book at i = ", i)
             #isbn was too big, go left
             elif (self.tree.bins[i].Isbn > isbn):
-                cost += self.costToMoveAndScan(i, 2**i)
-                i = 2 **i
+                cost += self.costToMoveAndScan(i, 2*i + 1)
+                i = 2 * i + 1
+                print ("i now equals ", i)
             #isbn was too small, go right
+            elif (self.tree.bins[i].Isbn < isbn):
+                cost += self.costToMoveAndScan(i, 2*i + 2)
+                i = 2 * i + 2
+                print ("i now equals ", i)
             else:
-                cost += self.costToMoveAndScan(i, 2**i)
-                i = 2 **i
+                Found = True
+                print ("error!!! isbn evaluated to ", self.tree.bins[i].Isbn, " and i was ", i)
             
         #now, add to it the cost to turn around and come back, and traverse to that.
         cost += 10 #change directions
