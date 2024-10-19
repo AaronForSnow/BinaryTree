@@ -11,7 +11,7 @@ class Robot:
         return moveCost + scanCost
     def costOfISBN(self, isbn):
         found = False
-        cost = 0.0
+        cost = 1.0 #because bin 0 is 1 away from the robot's starting place
         i = 0
         while not found:
             if (self.tree.bins[i].Isbn) == isbn:
