@@ -21,5 +21,5 @@ def test_robot_can_give_cost_single_book():
     )
     myRobot = Robot()
     myRobot.tree = oneBookTree
-    answer = myRobot.CostOfISBN(10)
+    answer = myRobot.costOfISBN(10)
     assert answer == 12.75
