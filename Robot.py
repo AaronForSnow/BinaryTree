@@ -3,47 +3,52 @@
 from Tree import tree;
 class Robot:
     
-    def __init__(self):
-        self.tree = None
-        self.move_once_cost = 1
-        self.scan_cost = .5
-        self.retrieve_cost = .25
-        self.change_direction_cost = 10
-        self.return_to_start_cost = 1
+    def __init__(self, tree, move_once, scan, turn_around):
+        self.tree = tree
+        self.move_once_cost = move_once # constant alfa
+        self.scan_cost = scan     # constant beta
+        self.retrieve_cost = 0  # constant ... we din't need
+        self.change_direction_cost = turn_around # constant gama
         return
-    def costToMoveAndScan(self, currentPosition, targetPosition):
-        moveCost = (targetPosition - currentPosition) * self.move_once_cost
-        scanCost = .5
-        return moveCost + scanCost
+    def costToMove(self, currentPosition, targetPosition):
+        moveCost = abs(targetPosition - currentPosition) * self.move_once_cost
+        return moveCost
     def costOfISBN(self, isbn):
         found = False
         cost = self.move_once_cost #because bin 0 is 1 away from the robot's starting place
-        i = 0
-        while not found:
-            if (self.tree.bins[i].Isbn) == isbn:
+        i = 1
+        current_bin = self.tree.root_bin
+        try:
+            while not found:
                 cost += self.scan_cost
-                cost += self.retrieve_cost
-                found = True
-                print ("found book at i = ", i)
-            #isbn was too big, go left
-            elif (self.tree.bins[i].Isbn > isbn):
-                cost += self.costToMoveAndScan(i, 2*i )
-                i = 2 * i
-                print ("i now equals ", i)
-            #isbn was too small, go right
-            elif (self.tree.bins[i].Isbn < isbn):
-                cost += self.costToMoveAndScan(i, 2*i + 1)
-                i = 2 * i + 1
-                print ("i now equals ", i)
-            else:
-                Found = True
-                print ("error!!! isbn evaluated to ", self.tree.bins[i].Isbn, " and i was ", i)
-            
-        #now, add to it the cost to turn around and come back, and traverse to that.
-        cost += 10 #change directions
-        cost += i #come back to bin 0
-        cost += 1 #come back one more
-        print (cost)
+                if (current_bin.Isbn) == isbn:
+                    cost += self.retrieve_cost
+                    found = True
+                    print ("found book at i = ", i)
+                #isbn was too big, go left
+                elif (current_bin.Isbn > isbn):
+                    if current_bin.Left == None:
+                        return "no ISBN of that Value"
+                    current_bin = current_bin.Left
+                    cost += self.costToMove(i, 2*i)
+                    i = 2 * i
+                    print ("i now equals ", i, current_bin.Isbn)
+                #isbn was too small, go right
+                elif (current_bin.Isbn < isbn):
+                    if current_bin.Right == None:
+                        return "no ISBN of that Value"
+                    current_bin = current_bin.Right
+                    cost += self.costToMove(i, 2*i + 1)
+                    i = 2 * i + 1
+                    print ("i now equals ", i, current_bin.Isbn)
+        except Exception as e:
+            Found = True
+            print ("error!!! isbn evaluated to ",current_bin.Isbn, " and i was ", i)
+            print (e)     
+        # now, add to it the cost to turn around and come back, and traverse to that.
+        cost += self.change_direction_cost #change directions
+        cost += self.costToMove(i, 0) #come back to bin 0
+        print ("Total cost was:",cost)
         return cost
             
         

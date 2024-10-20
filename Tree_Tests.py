@@ -69,9 +69,13 @@ def test_Set_root_bin_Seven():
     assert my_tree.root_bin.Frequency == Bin(56, 7).Frequency
     assert my_tree.root_bin.Isbn == Bin(56, 7).Isbn
 
-
-# my_tree = tree(
-#             [123, 12, 23, 45, 56, 67, 78], #ISBN
-#             [  1,  7,  3,  4,  7,  2,  100]  #Frequency 33 = total  split 23 and 11 
+# ## Tests For Hashing of Bins
+# def test_root_bin_two():
+#     my_tree = tree(
+#         #      L   0
+#             [123, 12], #ISBN
+#             [  1,  7]  #Frequency
 #         )
-    
+#     # root starts at bins[1] because Bins[0] == the delivory box the robot starts at. (also easier for hashing math)
+#     assert my_tree.Bins[1].Frequency == Bin(12, 7).Frequency
+#     assert my_tree.Bins[1].Isbn == Bin(12, 7).Isbn

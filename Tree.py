@@ -3,13 +3,13 @@ from Bin_tests import Bin;
 class tree:
     def __init__ (self, isbns, frequencies): #Isbns are already in order!
         self.total_frequency = 0
-        self.bins = []
+        self.Bins = []
         for i in range(len(frequencies)):
             self.total_frequency += frequencies[i]
             b = Bin(isbns[i], frequencies[i])
-            self.bins.append(b)
+            self.Bins.append(b)
         target_frequency = self.total_frequency/2
-        self.root_bin, lefts, rights = self.get_root_bin(target_frequency, self.bins)
+        self.root_bin, lefts, rights = self.get_root_bin(target_frequency, self.Bins)
         self.set_tree(lefts, rights, self.root_bin)
 
     def set_tree(self, lefts, rights, root):
