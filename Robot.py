@@ -32,7 +32,7 @@ class Robot:
                     current_bin = current_bin.Left
                     cost += self.costToMove(i, 2*i)
                     i = 2 * i
-                    print ("i now equals ", i, current_bin.Isbn)
+                    print ("i now equals ", i, current_bin.Isbn, )
                 #isbn was too small, go right
                 elif (current_bin.Isbn < isbn):
                     if current_bin.Right == None:
