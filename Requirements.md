@@ -47,4 +47,4 @@ Anyway, I hope that helps.  As always, the goal is not just to solve this proble
 ## Aaron Notes:
 * The Robot knows Frequency.
 * Changing Direction matters
-* Hash the Boxes!!! (must be our own hash because we care about order to the end)
+* Hash the Boxes!!! (must be our own hash because we care about order to the end) ... I meant to say heap, heapify
