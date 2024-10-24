@@ -12,5 +12,8 @@ class RedoTree:
         if (len(isbns) == 0):
             return None
         elif(len(isbns) == 1):
-            return Bin(isbns[0], None, None)
+            myBin = Bin(isbns[0], frequencies[0])
+            myBin.Left = None
+            myBin.Right = None
+            return myBin
         
